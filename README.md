@@ -1,34 +1,62 @@
 # University Management System
 
-This project is a Java-based University Management System designed to streamline and automate various administrative and academic processes within a university setting. It provides functionalities for managing students, faculty, courses, and other university resources.
+This project is a Java-based University Management System designed to streamline and automate various administrative and academic processes within a university setting. It follows the **Model-View-Controller (MVC)** architecture for a clean and maintainable code structure.
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Main Functionalities](#main-functionalities)
+- [Focus on MVC Architecture](#focus-on-mvc-architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
-- [Database Schema](#database-schema)
-- [Testing](#testing)
 - [License](#license)
 
 ## Overview
 
-The University Management System is developed using Java Swing for the user interface and MySQL for the backend database. It follows a modular architecture with clear separation between the controller, model, view, and database layers, ensuring maintainability and scalability.
+The University Management System is developed using Java Swing for the user interface and MySQL for the backend database. The project is modular, ensuring that the user interface (View), business logic (Model), and control flow (Controller) are separated to enhance maintainability and scalability.
 
 ## Main Functionalities
 
-- **Student Management**: Add, update, delete, and view student records.
-- **Faculty Management**: Manage faculty information and assignments.
-- **Course Management**: Create and manage course offerings and enrollments.
-- **Scheduling**: Organize class schedules and timetables.
-- **Grading System**: Input and manage student grades.
-- **Reports**: Generate various academic and administrative reports.
+- **Student Management**: Add, update, delete, and view student details, including personal information, enrolled courses, and attendance records.
+- **Faculty Management**: Manage faculty information, including assignments to specific courses.
+- **Course Management**: Add and manage course details, enroll students in courses, and assign faculty.
+- **Attendance Management**: Record and view attendance for students in various courses.
+- **Grading System**: Input, update, and view grades for students by course.
+- **Fee Calculation**: Calculate and manage tuition fees based on the courses a student is enrolled in.
+
+## Focus on MVC Architecture
+
+This project adheres to the MVC design pattern, which is structured as follows:
+
+1. **Model**:
+   - Represents the data and business logic of the application.
+   - Interacts with the MySQL database for CRUD operations.
+   - Key files:
+     - `StudentModel.java`: Handles all student-related data operations.
+     - `FacultyModel.java`: Manages faculty data.
+     - `CourseModel.java`: Operates on course data.
+     - `AttendanceModel.java`: Manages attendance records.
+     - `FeeModel.java`: Handles fee calculations.
+
+2. **View**:
+   - Provides the graphical user interface (GUI) for the application.
+   - Developed using Java Swing.
+   - Key files:
+     - `StudentView.java`: Displays student-related information and actions.
+     - `FacultyView.java`: GUI for managing faculty details.
+     - `CourseView.java`: Interface for course-related operations.
+     - `MainView.java`: Entry point and navigation.
+
+3. **Controller**:
+   - Acts as a bridge between the Model and View.
+   - Processes user inputs, interacts with the Model, and updates the View accordingly.
+   - Key files:
+     - `StudentController.java`: Manages user actions related to students.
+     - `FacultyController.java`: Handles faculty-related operations.
+     - `CourseController.java`: Controls course functionality.
 
 ## Prerequisites
-
-Before running the project, ensure you have the following software installed:
 
 - **Java Development Kit (JDK)**: Version 8 or higher. Download from [Oracle's official website](https://www.oracle.com/java/technologies/javase-downloads.html).
 - **MySQL Database Server**: Version 5.7 or higher. Download from [MySQL's official website](https://dev.mysql.com/downloads/installer/).
@@ -72,14 +100,6 @@ Before running the project, ensure you have the following software installed:
      - **Password**: `admin123`
 
    *Note: It's recommended to change the default credentials after the first login for security purposes.*
-
-## Database Schema
-
-The database schema is defined in the `Database_schema.txt` file. It includes the structure for tables such as `students`, `faculty`, `courses`, `enrollments`, and others, along with their relationships and constraints.
-
-## Testing
-
-JUnit test cases are provided in the `JUnit Test Cases.pdf` file. These tests cover various functionalities of the system to ensure reliability and correctness.
 
 ## License
 
