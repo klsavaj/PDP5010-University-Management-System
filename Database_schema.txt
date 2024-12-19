@@ -1,0 +1,53 @@
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    age INT,
+    dob DATE,
+    address TEXT,
+    phone VARCHAR(15),
+    email VARCHAR(100) UNIQUE,
+    role ENUM('student', 'teacher', 'admin') NOT NULL,  -- Role of the user
+    course VARCHAR(50),
+    branch VARCHAR(50)
+);
+
+CREATE TABLE attendance (
+    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,  -- Foreign Key to users
+    date DATE,
+    status ENUM('present', 'absent', 'leave') DEFAULT 'absent',
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE marks (
+    mark_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,  -- Foreign Key to users (students)
+    subject VARCHAR(100),
+    marks INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE messages (
+    message_id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT,  -- Foreign Key to users (admin/teacher)
+    receiver_id INT,  -- Foreign Key to users (students)
+    message TEXT,
+    sent_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE fees (
+    fee_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,  -- Foreign Key to users (students)
+    total_fees DECIMAL(10, 2),
+    paid DECIMAL(10, 2),
+    due DECIMAL(10, 2),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_users_name ON users (first_name, last_name);
+CREATE INDEX idx_users_email ON users (email);
+
